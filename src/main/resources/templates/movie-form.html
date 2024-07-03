@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add/Edit Movie</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1 th:text="${movie.id == null} ? 'Add Movie' : 'Edit Movie'"></h1>
+    <form th:action="@{${movie.id == null} ? '/movies/add' : '/movies/edit/' + ${movie.id}}" th:object="${movie}" method="post">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" th:field="*{title}" required/>
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <textarea id="description" th:field="*{description}" required></textarea>
+        </div>
+        <div>
+            <label for="releaseYear">Release Year</label>
+            <input type="number" id="releaseYear" th:field="*{releaseYear}" required/>
+        </div>
+        <div>
+            <label for="genre">Genre</label>
+            <input type="text" id="genre" th:field="*{genre}" required/>
+        </div>
+        <div>
+            <label for="watched">Watched</label>
+            <input type="checkbox" id="watched" th:field="*{watched}"/>
+        </div>
+        <div>
+            <label for="rating">Rating</label>
+            <input type="number" id="rating" th:field="*{rating}" min="1" max="5" required/>
+        </div>
+        <div>
+            <label for="review">Review</label>
+            <textarea id="review" th:field="*{review}"></textarea>
+        </div>
+        <div>
+            <button type="submit">Save</button>
+            <a href="/movies">Cancel</a>
+        </div>
+    </form>
+</body>
+</html>

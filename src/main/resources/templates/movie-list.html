@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Watchlist</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Movie Watchlist</h1>
+    <a href="/movies/add">Add Movie</a>
+    <ul>
+        <th:block th:each="movie : ${movies}">
+            <li>
+                <span th:text="${movie.title}"></span>
+                <a th:href="@{/movies/edit/{id}(id=${movie.id})}">Edit</a>
+                <a th:href="@{/movies/delete/{id}(id=${movie.id})}">Delete</a>
+                <a th:href="@{/movies/toggle-watched/{id}(id=${movie.id})}">Toggle Watched</a>
+            </li>
+        </th:block>
+    </ul>
+</body>
+</html>
